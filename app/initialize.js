@@ -27,7 +27,7 @@ $(document).ready(function() {
   // Fired when the server passes the client a session id.
   socket.on('session-id', function (data) {
 
-  	user.session_id = data.session_id;
+    user.session_id = data.session_id;
   	
   	socket.emit('update-user', user);
 
