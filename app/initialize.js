@@ -8,3 +8,28 @@
                                         
 
 */
+
+	
+// Let's create the user object.
+var user = {};
+
+// Now the socket connection
+var socket = io.connect('http://localhost:8080');
+
+socket.on('session-id', function (data) {
+
+	user.session_id = data.session_id;
+
+	socket.emit('update-user', user);
+	
+});
+
+/*
+
+$('#userText').bind('input propertychange', function() {
+
+		socket.emit('textarea', { my: 'data' });
+
+});
+
+*/
