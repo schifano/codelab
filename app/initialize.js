@@ -25,14 +25,12 @@ socket.on('session-id', function (data) {
 });
 
 /*
-$(document).ready(function (){
+$(document).on('click', function (){
 	
-	$('#userText').bind('input propertychange', function() {
+	user.nickname = "Austin";
 
-		socket.emit('textarea', { my: 'data' });
+	socket.emit('update-user', user);
 
-	});
 
 });
-
 */
