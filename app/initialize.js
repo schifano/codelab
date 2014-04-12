@@ -44,7 +44,19 @@ $("#userText").on("change keyup paste", function() {
     socket.emit('update-user', user);
 
 });
-	
+
+$(function() {
+  $("#nicknameForm").submit(function() {
+    //console.log("triggered form");
+    
+    var nick = $(this).children("#nicknameText").val();
+    user.nickname = nick;
+    //console.log(nick);
+    socket.emit('update-user', user);
+    return false;
+  });
+});	
+
 });
 
 
