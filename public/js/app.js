@@ -126,7 +126,16 @@ socket.on('friend-disconnect', function () {
 
 socket.on('friends-broadcast', function (data) {
 
-  console.log(data.length);
+  $('ul#users').empty();
+
+  console.log(data);
+
+  for(var i = 0; i < data.length; i++){
+
+  $('ul#users').append( "<a href=\"#\"><li id=\"" + data[i].session_id + "\">" + data[i].nickname + "</li></a>");
+
+  }
+  
 
 });
 
@@ -152,19 +161,26 @@ $("#userText").on("change keyup paste", function() {
 
 });
 
-$(function() {
-  $("#nicknameForm").submit(function() {
-    //console.log($(this).children("#nicknameText").val());
-    
-    var nick = $(this).children("#nicknameText").val();
-    user.nickname = nick;
-    //console.log(nick);
-    socket.emit('update-user', user);
 
-    socket.emit('refresh-friends');
-    return false;
-  });
-});	
+$("#nicknameForm").submit(function() {
+  //console.log($(this).children("#nicknameText").val());
+  
+  var nick = $(this).children("#nicknameText").val();
+  user.nickname = nick;
+  //console.log(nick);
+  socket.emit('update-user', user);
+
+  socket.emit('refresh-friends');
+  return false;
+});
+
+$("a li").on('click', function(evt) {
+  
+  evt.preventDefault();
+  alert("clicked");
+
+
+});
 
 });
 

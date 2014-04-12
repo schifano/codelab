@@ -17,16 +17,16 @@ io.sockets.on('connection', function (socket) {
   
   socket.on('update-user', function (user) {
 
-		for(var i = 0; i < users.length; i++){
+		var found = false;
 
-			var found = false;
+		for(var i = 0; i < users.length; i++){
 
 			// If the user is in the array...
 			if(users[i].session_id == this.id){
 
 				found = true;
 
-				// Overwrite the changes.	
+				// Add the updated user.
 				users[i] = user;
 
 
