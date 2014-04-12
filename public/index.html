@@ -6,6 +6,8 @@
 
   <!-- Google Font -->
   <link href='http://fonts.googleapis.com/css?family=Roboto:300' rel='stylesheet' type='text/css'>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+
 </head>
 <body>
   <script src="js/vendor.js"></script>
@@ -15,10 +17,9 @@
   	
   	var socket = io.connect('http://localhost:80');
   	
-  	socket.on('news', function (data) {
+  	socket.on('socket-id', function (data) {
     
-    	console.log(data);
-    	socket.emit('my other event', { my: 'data' });
+    	console.log(data['Socket ID']);
   	
   	});
 
