@@ -1,0 +1,1 @@
+{"version":3,"file":"public/js/app.js","sources":["app/initialize.js"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;AAAA;AAAA;AACA;AACA;AAFA;AAAA","sourcesContent":["document.body.innerHTML = \n  'Hello, world! JS is loading. Find me in \"app/initialize.js\"';\n"]}
