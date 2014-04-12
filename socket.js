@@ -9,7 +9,7 @@ var users = [];
 io.sockets.on('connection', function (socket) {
 
 	// Emit the session_id in user object
-  io.sockets.socket(socket.id).emit('session-id', {'session_id': socket.id});
+  io.sockets.socket(socket.id).emit('session-id', {'session_id': socket.id, 'nickname':'annonymous'});
 
   //
   //	Update User
@@ -29,6 +29,7 @@ io.sockets.on('connection', function (socket) {
 				// Overwrite the changes.	
 				users[i] = user;
 
+
 			}
 
 		}
@@ -41,16 +42,38 @@ io.sockets.on('connection', function (socket) {
 
 		}
 
-		console.log(users);
+	});
 
-  });
+	socket.on('refresh-friends', function(user){
 
-    
+  	var friends = [];
+
+  	var friend = {};
+
+  	// Build a friends list.
+
+		for(var i = 0; i < users.length; i++){
+
+				friend.session_id = users[i].session_id;
+
+				friend.nickname = users[i].nickname;
+
+				friends.push(friend);
+
+				friend = {};
+		}
+
+		// Emit the friends list to the requesting user
+		socket.broadcast.emit('friends-broadcast', friends);
+		socket.emit('friends-broadcast', friends);
+
+	});
+   
 	//
 	//	On Disconect
 	//
 
-	socket.on('disconnect', function (socket) {
+	socket.on('disconnect', function () {
 	  
 		for(var i = 0; i < users.length; i++){
 
@@ -61,6 +84,9 @@ io.sockets.on('connection', function (socket) {
 			}
 
 		}
+
+		socket.broadcast.emit('friend-disconnect');
+
 
 	});
 

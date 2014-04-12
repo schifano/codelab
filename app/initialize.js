@@ -12,15 +12,29 @@
 	
 // Let's create the user object.
 var user = {};
+    user.nickname = "anonymous";
 
 // Now the socket connection
 var socket = io.connect('http://localhost:8080');
 
 socket.on('session-id', function (data) {
 
-	user.session_id = data;
+	user.session_id = data.session_id;
 	
 	socket.emit('update-user', user);
+
+  socket.emit('refresh-friends');
+});
+
+socket.on('friend-disconnect', function () {
+
+    socket.emit('refresh-friends');
+});
+
+socket.on('friends-broadcast', function (data) {
+
+  console.log(data.length);
+
 });
 
 $(document).ready(function() {
@@ -47,16 +61,20 @@ $("#userText").on("change keyup paste", function() {
 
 $(function() {
   $("#nicknameForm").submit(function() {
-    //console.log("triggered form");
+    //console.log($(this).children("#nicknameText").val());
     
     var nick = $(this).children("#nicknameText").val();
     user.nickname = nick;
     //console.log(nick);
     socket.emit('update-user', user);
+
+    socket.emit('refresh-friends');
     return false;
   });
 });	
 
 });
+
+
 
 
