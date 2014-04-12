@@ -28,10 +28,11 @@ $(document).ready(function() {
   socket.on('session-id', function (data) {
 
     user.session_id = data.session_id;
-  	
-  	socket.emit('update-user', user);
+
+    socket.emit('update-user', user);
 
     socket.emit('refresh-friends');
+
   });
 
   // Fired when the server responds with partner code.
@@ -43,8 +44,8 @@ $(document).ready(function() {
 
   // Fired when the server recieves an update from a partner.
   socket.on('watch-code', function(partnerUser) {
-  	
-  	$('#viewCode').val(partnerUser.textarea);
+
+    $('#viewCode').val(partnerUser.textarea);
   
   });
 
@@ -97,6 +98,8 @@ $(document).ready(function() {
     socket.emit('update-user', user);
 
     socket.emit('refresh-friends');
+
+    return false;
   
   });
 

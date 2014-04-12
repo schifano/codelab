@@ -104,73 +104,76 @@ require.register("initialize", function(exports, require, module) {
 
 // We wait for the document to finish loading.
 $(document).ready(function() {
-	
-// Let's create the user object.
-var user = {};
-    user.nickname = "anonymous"; // Default nickname
-    user.textarea = "";          // Default text file
 
-// Now open the socket connection
-var socket = io.connect('http://:8080');
+  // Let's create the user object.
+  var user = {};
+      user.nickname = "anonymous"; // Default nickname
+      user.textarea = "";          // Default text file
 
-//
-//  Socket.io Listeners/Events
-//
+  // Now open the socket connection
+  var socket = io.connect('http://:8080');
 
-socket.on('retrieve-code', function(textarea) {
-  console.log("made it");
-  $('#viewCode').val(textarea);
+  //
+  //  Socket.io Listeners/Events
+  //
 
-});
+  // Fired when the server passes the client a session id.
+  socket.on('session-id', function (data) {
 
-socket.on('session-id', function (data) {
-
-	user.session_id = data.session_id;
-	
-	socket.emit('update-user', user);
-
-  socket.emit('refresh-friends');
-});
-
-socket.on('watch-code', function(partnerUser) {
-	console.log("got partner shit");
-	console.log(partnerUser.nickname);
-	console.log(partnerUser.textarea);
-	$('#viewCode').val(partnerUser.textarea);
-});
-
-socket.on('friend-disconnect', function () {
-
-    socket.emit('refresh-friends');
-});
-
-socket.on('friends-broadcast', function (data) {
-
-  $('ul#users').empty();
-
-  console.log(data);
-
-  for(var i = 0; i < data.length; i++){
-
-  $('ul#users').append( "<a href=\"#\"><li id=\"" + data[i].session_id + "\">" + data[i].nickname + "</li></a>");
-
-  }
-
-  $("#users li").on('click', function(e) {
-
-    user.partner_id = this.id;
+    user.session_id = data.session_id;
 
     socket.emit('update-user', user);
 
-    socket.emit('fetch-code', user.partner_id); 
+    socket.emit('refresh-friends');
 
   });
 
-});
+  // Fired when the server responds with partner code.
+  socket.on('retrieve-code', function(textarea) {
+    
+    $('#viewCode').val(textarea);
 
-//
-//  jQuery Listeners/Events
-//
+  });
+
+  // Fired when the server recieves an update from a partner.
+  socket.on('watch-code', function(partnerUser) {
+
+    $('#viewCode').val(partnerUser.textarea);
+  
+  });
+
+  // Fired when a friend disconnects.
+  socket.on('friend-disconnect', function () {
+
+      socket.emit('refresh-friends');
+  });
+
+  // Fired when the server broadcasts the current list of online friends.
+  socket.on('friends-broadcast', function (data) {
+
+    $('ul#users').empty();
+
+    for(var i = 0; i < data.length; i++){
+
+      $('ul#users').append( "<a href=\"#\"><li id=\"" + data[i].session_id + "\">" + data[i].nickname + "</li></a>");
+
+    }
+
+    $("#users li").on('click', function(e) {
+
+      user.partner_id = this.id;
+
+      socket.emit('update-user', user);
+
+      socket.emit('fetch-code', user.partner_id); 
+
+    });
+
+  });
+
+  //
+  //  jQuery Listeners/Events
+  //
 
   $("#userText").on("change keydown keyup paste", function() {
 
