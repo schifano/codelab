@@ -25,10 +25,13 @@ socket.on('session-id', function (data) {
 });
 
 /*
-
-$('#userText').bind('input propertychange', function() {
+$(document).ready(function (){
+	
+	$('#userText').bind('input propertychange', function() {
 
 		socket.emit('textarea', { my: 'data' });
+
+	});
 
 });
 
