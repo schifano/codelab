@@ -13,9 +13,16 @@
 // Let's create the user object.
 var user = {};
     user.nickname = "anonymous";
+    user.textarea = "partner code";
 
 // Now the socket connection
 var socket = io.connect('http://:8080');
+
+socket.on('retrieve-code', function(textarea) {
+  console.log("made it");
+  $('#viewCode').val(textarea);
+
+});
 
 socket.on('session-id', function (data) {
 
@@ -24,6 +31,13 @@ socket.on('session-id', function (data) {
 	socket.emit('update-user', user);
 
   socket.emit('refresh-friends');
+});
+
+socket.on('watch-code', function(partnerUser) {
+	console.log("got partner shit");
+	console.log(partnerUser.nickname);
+	console.log(partnerUser.textarea);
+	$('#viewCode').val(partnerUser.textarea);
 });
 
 socket.on('friend-disconnect', function () {
@@ -48,7 +62,8 @@ socket.on('friends-broadcast', function (data) {
     user.partner_id = this.id;
 
     socket.emit('update-user', user);
-
+    var test = "hi"; 
+    socket.emit('fetch-code', user.partner_id); 
     console.log(user);    
 
   });
@@ -58,19 +73,19 @@ socket.on('friends-broadcast', function (data) {
 $(document).ready(function() {
 
 var oldVal = "";
-$("#userText").on("change keyup paste", function() {
+$("#userText").on("change keydown keyup paste", function() {
 
     var currentVal = $(this).val();
     
-    if(currentVal == oldVal) {
+    //if(currentVal == oldVal) {
     
-        return; //check to prevent multiple simultaneous triggers
+     //   return; //check to prevent multiple simultaneous triggers
     
-    }
+    //}
     
     oldVal = currentVal;
 
-    user.text_area = oldVal;
+    user.textarea = oldVal;
 
     //socket.emit('textarea', {textarea: oldVal});   
     socket.emit('update-user', user);

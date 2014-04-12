@@ -11,12 +11,23 @@ io.sockets.on('connection', function (socket) {
 	// Emit the session_id in user object
   io.sockets.socket(socket.id).emit('session-id', {'session_id': socket.id, 'nickname':'annonymous'});
 
+  socket.on('fetch-code', function(partnerID) {
+    for(var i = 0; i < users.length; i++) {
+      if(users[i].session_id == partnerID) {
+        socket.emit('retrieve-code', users[i].textarea);
+      }
+    } 
+
+  });
+
+
   //
   //	Update User
   //
-  
-  socket.on('update-user', function (user) {
+ 
 
+  socket.on('update-user', function (user) {
+		updateUser(user);
 		var found = false;
 
 		for(var i = 0; i < users.length; i++){
@@ -89,5 +100,15 @@ io.sockets.on('connection', function (socket) {
 
 
 	});
+
+	function updateUser(userIn) {
+		for(var i = 0; i < users.length; i++) {
+			if(users[i].partner_id  == userIn.session_id) {
+				console.log("found partner");
+				//users[i].watch_code = userIn.text_area;
+				io.sockets.socket(users[i].session_id).emit('watch-code', userIn); 
+			} 
+		}
+	}
 
 });
