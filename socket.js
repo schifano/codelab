@@ -21,18 +21,22 @@ io.sockets.on('connection', function (socket) {
 
 			var found = false;
 
+			// If the user is in the array...
 			if(users[i].session_id == this.id){
 
 				found = true;
 
+				// Overwrite the changes.	
 				users[i] = user;
 
 			}
 
 		}
 
+		// If the user is not in the array...
 		if(!found){
 
+			// Then we add the user to the array.
 			users.push(user);
 
 		}
