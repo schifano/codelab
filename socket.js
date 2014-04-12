@@ -24,11 +24,11 @@ io.sockets.on('connection', function (socket) {
 
 				found = true;
 
-				// Tell partners of this user about the update.
-				updateUser(user);
-
 				// Add the updated user.
 				users[i] = user;
+
+				// Tell partners of this user about the update.
+				updateUser(user);
 
 			}
 
