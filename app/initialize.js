@@ -13,7 +13,7 @@
 var user = {};
 
 // Now the socket connection
-var socket = io.connect('http://localhost:80');
+var socket = io.connect('http://localhost:8080');
 
 socket.on('session-id', function (data) {
 
