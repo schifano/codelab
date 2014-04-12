@@ -91,8 +91,16 @@
   globals.require.brunch = true;
 })();
 require.register("initialize", function(exports, require, module) {
-document.body.innerHTML = 
-  'Hello, world! JS is loading. Find me in "app/initialize.js"';
+/*
+
+   ___          _        __       _     
+  / __\___   __| | ___  / /  __ _| |__  
+ / /  / _ \ / _` |/ _ \/ /  / _` | '_ \ 
+/ /__| (_) | (_| |  __/ /__| (_| | |_) |
+\____/\___/ \__,_|\___\____/\__,_|_.__/ 
+                                        
+
+*/
 
 });
 
