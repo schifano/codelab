@@ -9,101 +9,96 @@
 
 */
 
-	
-// Let's create the user object.
-var user = {};
-    user.nickname = "anonymous";
-    user.textarea = "partner code";
+// We wait for the document to finish loading.
+$(document).ready(function() {
 
-// Now the socket connection
-var socket = io.connect('http://:8080');
+  // Let's create the user object.
+  var user = {};
+      user.nickname = "anonymous"; // Default nickname
+      user.textarea = "";          // Default text file
 
-socket.on('retrieve-code', function(textarea) {
-  console.log("made it");
-  $('#viewCode').val(textarea);
+  // Now open the socket connection
+  var socket = io.connect('http://:8080');
 
-});
+  //
+  //  Socket.io Listeners/Events
+  //
 
-socket.on('session-id', function (data) {
+  // Fired when the server passes the client a session id.
+  socket.on('session-id', function (data) {
 
-	user.session_id = data.session_id;
-	
-	socket.emit('update-user', user);
-
-  socket.emit('refresh-friends');
-});
-
-socket.on('watch-code', function(partnerUser) {
-	console.log("got partner shit");
-	console.log(partnerUser.nickname);
-	console.log(partnerUser.textarea);
-	$('#viewCode').val(partnerUser.textarea);
-});
-
-socket.on('friend-disconnect', function () {
+  	user.session_id = data.session_id;
+  	
+  	socket.emit('update-user', user);
 
     socket.emit('refresh-friends');
-});
+  });
 
-socket.on('friends-broadcast', function (data) {
-
-  $('ul#users').empty();
-
-  console.log(data);
-
-  for(var i = 0; i < data.length; i++){
-
-  $('ul#users').append( "<a href=\"#\"><li id=\"" + data[i].session_id + "\">" + data[i].nickname + "</li></a>");
-
-  }
-
-  $("#users li").on('click', function(e) {
-
-    user.partner_id = this.id;
-
-    socket.emit('update-user', user);
-    var test = "hi"; 
-    socket.emit('fetch-code', user.partner_id); 
-    console.log(user);    
+  // Fired when the server responds with partner code.
+  socket.on('retrieve-code', function(textarea) {
+    
+    $('#viewCode').val(textarea);
 
   });
 
-});
+  // Fired when the server recieves an update from a partner.
+  socket.on('watch-code', function(partnerUser) {
+  	
+  	$('#viewCode').val(partnerUser.textarea);
+  
+  });
 
-$(document).ready(function() {
+  // Fired when a friend disconnects.
+  socket.on('friend-disconnect', function () {
 
-var oldVal = "";
-$("#userText").on("change keydown keyup paste", function() {
+      socket.emit('refresh-friends');
+  });
 
-    var currentVal = $(this).val();
-    
-    //if(currentVal == oldVal) {
-    
-     //   return; //check to prevent multiple simultaneous triggers
-    
-    //}
-    
-    oldVal = currentVal;
+  // Fired when the server broadcasts the current list of online friends.
+  socket.on('friends-broadcast', function (data) {
 
-    user.textarea = oldVal;
+    $('ul#users').empty();
 
-    //socket.emit('textarea', {textarea: oldVal});   
+    for(var i = 0; i < data.length; i++){
+
+      $('ul#users').append( "<a href=\"#\"><li id=\"" + data[i].session_id + "\">" + data[i].nickname + "</li></a>");
+
+    }
+
+    $("#users li").on('click', function(e) {
+
+      user.partner_id = this.id;
+
+      socket.emit('update-user', user);
+
+      socket.emit('fetch-code', user.partner_id); 
+
+    });
+
+  });
+
+  //
+  //  jQuery Listeners/Events
+  //
+
+  $("#userText").on("change keydown keyup paste", function() {
+
+      user.textarea = $(this).val();
+
+      socket.emit('update-user', user);
+
+  });
+
+
+  $("#nicknameForm").submit(function() {
+
+    user.nickname = $(this).children("#nicknameText").val();
+
     socket.emit('update-user', user);
 
-});
-
-
-$("#nicknameForm").submit(function() {
-  //console.log($(this).children("#nicknameText").val());
+    socket.emit('refresh-friends');
   
-  var nick = $(this).children("#nicknameText").val();
-  user.nickname = nick;
-  //console.log(nick);
-  socket.emit('update-user', user);
-
-  socket.emit('refresh-friends');
-  return false;
-});
+  });
 
 });
 
