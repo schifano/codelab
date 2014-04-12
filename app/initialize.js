@@ -9,30 +9,40 @@
 
 */
 
-	
 // Let's create the user object.
 var user = {};
 
 // Now the socket connection
-var socket = io.connect('http://localhost:8080');
+var socket = io.connect('http://localhost:80');
 
 socket.on('session-id', function (data) {
 
-	user.session_id = data.session_id;
-
+	user.session_id = data;
+	
 	socket.emit('update-user', user);
+});
+
+$(document).ready(function() {
+
+var oldVal = "";
+$("#userText").on("change keyup paste", function() {
+
+    var currentVal = $(this).val();
+    if(currentVal == oldVal) {
+        return; //check to prevent multiple simultaneous triggers
+    }
+    
+    oldVal = currentVal;
+
+    user.text_area = oldVal;
+    console.log(user.text_area);
+    console.log(user.session_id);
+	
+    //socket.emit('textarea', {textarea: oldVal});   
+    socket.emit('update-user', user);
+
+});
 	
 });
 
-/*
-$(document).ready(function (){
-	
-	$('#userText').bind('input propertychange', function() {
 
-		socket.emit('textarea', { my: 'data' });
-
-	});
-
-});
-
-*/
