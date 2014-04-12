@@ -102,6 +102,31 @@ require.register("initialize", function(exports, require, module) {
 
 */
 
+	
+// Let's create the user object.
+var user = {};
+
+// Now the socket connection
+var socket = io.connect('http://localhost:8080');
+
+socket.on('session-id', function (data) {
+
+	user.session_id = data.session_id;
+
+	socket.emit('update-user', user);
+	
+});
+
+/*
+$(document).on('click', function (){
+	
+	user.nickname = "Austin";
+
+	socket.emit('update-user', user);
+
+
+});
+*/
 });
 
 ;
