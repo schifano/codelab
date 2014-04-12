@@ -14,7 +14,7 @@ io.sockets.on('connection', function (socket) {
  	// Fired when the client sends a user to update to the server.
   socket.on('update-user', function (user) {
 		
-		// Let's search for this use.
+		// Let's search for this user.
 		var found = false;
 
 		for(var i = 0; i < users.length; i++){
