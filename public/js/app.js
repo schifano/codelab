@@ -135,7 +135,16 @@ socket.on('friends-broadcast', function (data) {
   $('ul#users').append( "<a href=\"#\"><li id=\"" + data[i].session_id + "\">" + data[i].nickname + "</li></a>");
 
   }
-  
+
+  $("#users li").on('click', function(e) {
+
+    user.partner_id = this.id;
+
+    socket.emit('update-user', user);
+
+    console.log(user);    
+
+  });
 
 });
 
@@ -172,14 +181,6 @@ $("#nicknameForm").submit(function() {
 
   socket.emit('refresh-friends');
   return false;
-});
-
-$("a li").on('click', function(evt) {
-  
-  evt.preventDefault();
-  alert("clicked");
-
-
 });
 
 });

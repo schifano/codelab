@@ -42,7 +42,16 @@ socket.on('friends-broadcast', function (data) {
   $('ul#users').append( "<a href=\"#\"><li id=\"" + data[i].session_id + "\">" + data[i].nickname + "</li></a>");
 
   }
-  
+
+  $("#users li").on('click', function(e) {
+
+    user.partner_id = this.id;
+
+    socket.emit('update-user', user);
+
+    console.log(user);    
+
+  });
 
 });
 
@@ -80,10 +89,6 @@ $("#nicknameForm").submit(function() {
   socket.emit('refresh-friends');
   return false;
 });
-
-$("a").click(function() {
-   // alert(this.id); // id of clicked li by directly accessing DOMElement property
-    console.log("you made it");
 
 });
 
