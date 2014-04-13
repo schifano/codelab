@@ -62,11 +62,13 @@ $(document).ready(function() {
 
     for(var i = 0; i < data.length; i++){
 
-      $('ul#users').append( "<li id=\"" + data[i].session_id + "\">" + data[i].nickname + "</li>");
+      $('ul#users').append( "<li id=\"" + data[i].session_id + "\"><a href=\"#\">" + data[i].nickname + "</a></li>");
 
     }
 
     $("#users li").on('click', function(e) {
+
+      e.preventDefault();
 
       user.partner_id = this.id;
 
