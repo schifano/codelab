@@ -86,8 +86,6 @@ $(document).ready(function() {
 
       user.textarea = userText.getValue();
 
-      console.log(user);
-
       socket.emit('update-user', user);
 
   });
