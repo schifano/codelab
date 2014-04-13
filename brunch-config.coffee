@@ -6,7 +6,7 @@ exports.config =
     javascripts:
       joinTo:
         'js/vendor.js': /^vendor\/scripts/
-        'js/app.js': /^app/
+        'js/app.js': /^app(\/|\\)(?!assets)/
 
     stylesheets:
       joinTo:
