@@ -1,1 +1,183 @@
-#about{background-color:#fff;padding:50px;margin:0;width:100%;height:500px;position:relative}#content{top:25px;position:relative;margin-left:auto;margin-right:auto;height:800px}#viewCode{display:table-cell;background-color:#473892}#userText{display:table-cell;background-color:#666}#users{display:table-cell;float:left;background-color:#ccc;width:125px;height:500px;overflow-y:auto;overflow-x:inherit}#users ul{padding:0;margin:0}#users ul li{list-style:none;text-align:center;padding:10px}#users ul li a:hover{background-color:#fff;text-decoration:none;padding:10px}#users ul li a:link{text-decoration:none;padding:12px}#nicknameText{width:120px}body{font-family:'Source Sans Pro',sans-serif;background-color:#EFEAE1;margin:0}html{min-width:1300px}h1{margin:10px;font-size:3em;color:#66595C;text-align:center}nav{padding:0;height:50px;text-align:center}nav ul{padding:0;margin:0;display:inline-block}nav ul li{list-style:none;float:left;font-size:1.2em;color:#66595C}nav ul li a:link,a:visited,a:hover,a:active{text-decoration:none;color:#66595C;padding:0 10px}nav ul li a:hover{background-color:#fff;padding:0 10px}textarea{padding:0;margin:0}.no_bullet{list-style-type:none}.table_row{display:table-row;clear:left;margin-left:auto;margin-right:auto;width:100%}.CodeMirror{width:550px!important;height:500px!important;float:left}
+/* Edit this stylesheet for index.html */
+.about {
+	background-color: #fff;
+	margin: 0;
+	padding: 30px;
+	width: 100%;
+	height: 300px;
+	display: block;
+	position: relative;
+}
+#backend {
+	background-color: #EFEAE1;
+	padding: 50px;
+	margin: 0;
+	width: 100%;
+	height: 500px;
+	position: relative;
+}
+#contact{
+	background-color: #66595C;
+	margin: 0;
+	width: 100%;
+	height: 200px;
+	position: relative;
+}
+#content {
+	position: relative;
+	margin-left: auto;
+	margin-right: auto;
+	height: 600px;
+}
+#heading {
+	padding-left: 50px;
+}
+#viewCode {
+	display: table-cell;
+ 	background-color: #473892;
+}
+#userText {
+	display: table-cell;
+	background-color: #666;
+}
+#users {
+	display: table-cell;
+	float: left;
+	background-color: #ccc;
+	width: 100px;
+	height: 500px;
+	overflow-y: auto;
+}
+#users ul {
+	padding: 0;
+	margin: 0;
+	width: 100%;
+}
+#users ul li {
+	list-style: none;
+	text-align: center;
+	width: 100%;
+	margin: 0;
+}
+#users ul li a:hover {
+	text-decoration: underline;
+	color: #fff;
+}
+/*
+	background-color: #fff;
+	width: 100%;
+	display: table-cell;
+	margin: 0;
+
+*/
+#users ul li a:link {
+	text-decoration: none;
+	padding: 11px;
+	width: 100%;
+	display: table-cell;
+	margin: 0;
+}
+#nicknameText {
+	width: 94px;
+}
+
+
+body {
+	font-family: 'Source Sans Pro', sans-serif;
+	background-color: #EFEAE1;
+	margin: 0;
+	color: #66595C;
+}
+html {
+ 	min-width: 1200px;
+ }
+h1 {
+	margin-bottom: 20px;
+	margin-left: 15px;
+	margin-top: 0;
+ 	font-size: 3.5em;
+ 	color: #66595C;
+}
+h2 {
+	font-size: 2.0em;
+	margin: 0;
+	padding: 0;
+}
+/*
+nav {
+	padding: 0;
+	height: 50px;
+	text-align: center;
+}
+nav ul {
+	padding: 0;
+	margin: 0;
+	display: inline-block;
+}
+nav ul li {
+	list-style: none;
+	float: left;
+	font-size: 1.2em;
+	color: #66595C;
+}
+nav ul li a:link, a:visited, a:hover, a:active {
+	text-decoration: none;
+	color: #66595C;
+	padding: 0 10px 0 10px;
+}
+nav ul li a:hover {
+	background-color: #fff;
+	padding: 0 10px 0 10px;
+}
+*/
+footer {
+	background-color: #66595C;
+	height: 50px;
+}
+textarea {
+	padding: 0;
+	margin: 0;
+}
+.col {
+	width: 40%;
+	float: left;
+	padding: 50px;
+}
+.center {
+	text-align: center;
+}
+.img-responsive {
+	max-width: 100%;
+	height: auto;
+}
+.no_bullet {
+	list-style-type: none;
+}
+.right {
+	float: right;
+}
+.table_row {
+	display: table-row;
+	clear: left;
+	margin-left: auto;
+	margin-right: auto;
+	width: 100%;
+}
+.fb-like {
+	position: absolute;
+	top: 620px;
+	left: 1065px;
+}
+.twitter-share {
+	position: absolute;
+	top: 620px;
+	left: 975px;
+}
+/* Overrides Codemirror styling */
+.CodeMirror {
+	width: 580px !important;
+	height: 500px !important;
+	float: left;
+}
+
+/*# sourceMappingURL=app.css.map*/

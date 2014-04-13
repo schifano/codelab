@@ -19,15 +19,35 @@
 
 </head>
 <body>
+  <div id="fb-root"></div>
+  <script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+  </script>
   <script src="js/vendor.js"></script>
   <script src="js/app.js"></script>
   <script src="/socket.io/socket.io.js"></script>
   <script>require('initialize');</script>
 
+  <!-- Facebook icon -->
+  <div class="fb-like" data-href="http://codelab.otokei-douj.in:3000/index.html" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
 
+  <!-- Twitter icon -->
+  <div class="twitter-share">
+  <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://codelab.otokei-douj.in:3000" data-text="CodeLab">Tweet</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+  </div>
 
+  <section id="heading">
+    <!-- <img src="images/beakers.png" alt="Beakers" class="img-responsive" style="position: absolute; top: 15px; left: 1250px; width: 85px; height: 85px;"> -->
+    <h1 class="center">CodeLab</h1>
+  </section>
   <section id="content">
-  <h1>CodeLab</h1>
+  <!--
     <nav style="margin-left: auto; margin-right: auto;">
       <ul>
         <li><a href="index.html#about">About</a></li>
@@ -35,29 +55,18 @@
         <li><a href="index.html#contact">Contact</a></li>
       </ul>
     </nav>
+  -->
     <div style="display: table; margin-left: auto; margin-right: auto;">
     <div class="table_row">
       <section id="users">
     	 <ul id="users"></ul>
-       <!-- 
-       <ul>
-          <li>raschif</li>
-          <li>kmcasto</li>
-          <li>atsavag</li>
-          <li>snsyder</li>
-          <li>kwsuh</li>
-          <li>ashesh</li>
-          <li>mreed</li>
-          <li>sawalcy</li>
-        </ul>
-      -->
       </section>
       
       <textarea id="userText"></textarea>
       <textarea id="viewCode"></textarea>
       <form id="nicknameForm">
-        <input type="text" name="nickname" id="nicknameText"><br>
-        <input type="submit" value="Submit">
+        <input type="text" name="nickname" id="nicknameText">
+        <!-- <input type="submit" value="Submit"> -->
       </form> 
     </div>
     </div>
@@ -79,9 +88,30 @@
       });
     </script>
 
-    <section id="about">
+    <section class="about">
+      <div class="col">
+         <h2>Professors demonstrate in real time.</h2>
+         <p>Students often struggle with deciphering handwritten code on a whiteboard, projected onto a distant or fuzzy screen, or catching code simply before the professor moves on.</p>
 
+        <p>CodeLab allows professors to share code snippets in real time with a classroom of students without the need to squeeze into crowded spaces to physically debug or answer a question.</p>
+      </div>
+      <div class="col">
+         <h2>Students participate in real time.</h2>
+         <p>Learning how to code is not easy. Students frequently have questions but sometimes are not capable of meeting physically with a professor. It is also very frustrating to email code.</p>
+
+         <p>CodeLab allows students to connect with their professor in or out of a classroom. Syntax highlighting makes code readable.</p>
+      </div>
     </section>
+
+    <footer style="color: #fff;">
+      <ul style="list-style: none; margin: 0; padding: 20px 0 20px 70px;">
+        <li style="float: left; padding: 10px;">Austin Savage</li>
+        <li style="float: left; padding: 10px;">Kevin Castor</li>
+        <li style="float: left; padding: 10px;">Rachel Schifano</li>
+        <li style="float: left; padding: 10px;">Travis Sauder</li>
+      </ul>
+    <footer>
+
 
 </body>
 </html>
