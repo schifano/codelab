@@ -64,14 +64,14 @@
   </section>
 
     <script>
-      var editor = CodeMirror.fromTextArea(document.getElementById("userText"), {
+      var userText = CodeMirror.fromTextArea(document.getElementById("userText"), {
         lineNumbers: true,
         matchBrackets: true,
         theme: "mdn-like",
         mode: "javascript"
       });
 
-      var editor = CodeMirror.fromTextArea(document.getElementById("viewCode"), {
+      var guestText = CodeMirror.fromTextArea(document.getElementById("viewCode"), {
         lineNumbers: true,
         matchBrackets: true,
         theme: "xq-light",

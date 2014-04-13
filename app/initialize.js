@@ -38,14 +38,14 @@ $(document).ready(function() {
   // Fired when the server responds with partner code.
   socket.on('retrieve-code', function(textarea) {
     
-    $('#viewCode').val(textarea);
+    guestText.setValue(textarea);
 
   });
 
   // Fired when the server recieves an update from a partner.
   socket.on('watch-code', function(partnerUser) {
 
-    $('#viewCode').val(partnerUser.textarea);
+    guestText.setValue(partnerUser.textarea);
   
   });
 
@@ -82,9 +82,11 @@ $(document).ready(function() {
   //  jQuery Listeners/Events
   //
 
-  $("#userText").on("change keydown keyup paste", function() {
+  $("div.CodeMirror.cm-s-mdn-like").on("change keydown keyup paste", function() {
 
-      user.textarea = $(this).val();
+      user.textarea = userText.getValue();
+
+      console.log(user);
 
       socket.emit('update-user', user);
 
