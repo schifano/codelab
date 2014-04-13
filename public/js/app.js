@@ -155,7 +155,7 @@ $(document).ready(function() {
 
     for(var i = 0; i < data.length; i++){
 
-      $('ul#users').append( "<a href=\"#\"><li id=\"" + data[i].session_id + "\">" + data[i].nickname + "</li></a>");
+      $('ul#users').append( "<li id=\"" + data[i].session_id + "\"><a href=\"#\">" + data[i].nickname + "</a></li>");
 
     }
 
