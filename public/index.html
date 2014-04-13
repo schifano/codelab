@@ -6,10 +6,15 @@
 
   <!-- Codemirror files -->
   <link rel="stylesheet" href="codemirror-4.0/lib/codemirror.css">
-  <script type="text/javascript" src="codemirror-4/lib/codemirror.js"></script>
+  <link rel="stylesheet" href="codemirror-4.0/theme/ambiance.css">
+  <link rel="stylesheet" href="codemirror-4.0/theme/monokai.css"> <!-- nice -->
+  <link rel="stylesheet" href="codemirror-4.0/theme/mdn-like.css"> <!-- nice -->
+  <link rel="stylesheet" href="codemirror-4.0/theme/xq-light.css">
+  <script type="text/javascript" src="codemirror-4.0/lib/codemirror.js"></script>
+  <script type="text/javascript" src="codemirror-4.0/mode/javascript/javascript.js"></script>
 
   <!-- Google Font -->
-  <link href='http://fonts.googleapis.com/css?family=Roboto:300' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300' rel='stylesheet' type='text/css'>
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 
 </head>
@@ -19,22 +24,59 @@
   <script src="/socket.io/socket.io.js"></script>
   <script>require('initialize');</script>
 
-  
-  <h1>CodeLab</h1>
+  <nav>
+    <ul>
+      <li><a href="index.html">CodeLab</a></li>
+      <li><a href="about.html">About</a></li>
+    </ul>
+  </nav>
 
-  <section id="users">
-	<ul id="users"></ul>
-  <section>
-  
-  <section id="code">
-	<textarea id="userText"></textarea>
-	<textarea id="viewCode"></textarea>
-  <section>
+  <section id="content">
+    <h1>CodeLab</h1>
 
-  <form id="nicknameForm">
-	<input type="text" name="nickname" id="nicknameText"><br>
-	<input type="submit" value="Submit">
-  </form>	
+    <div style="display: table; margin-left: auto; margin-right: auto;">
+    <div class="table_row">
+      <section id="users">
+    	 <!-- <ul id="users"></ul> -->
+       <ul>
+          <li>raschif</li>
+          <li>kmcasto</li>
+          <li>atsavag</li>
+          <li>snsyder</li>
+          <li>kwsuh</li>
+          <li>ashesh</li>
+          <li>mreed</li>
+          <li>sawalcy</li>
+        </ul>
+      </section>
+      
+      <textarea id="userText"></textarea>
+      <textarea id="viewCode"></textarea>
+      <form id="nicknameForm">
+        <input type="text" name="nickname" id="nicknameText"><br>
+        <input type="submit" value="Submit">
+      </form> 
+    </div>
+    </div>
+  </section>
+
+
+    <script>
+      var editor = CodeMirror.fromTextArea(document.getElementById("userText"), {
+        lineNumbers: true,
+        matchBrackets: true,
+        theme: "mdn-like",
+        mode: "javascript"
+      });
+
+      var editor = CodeMirror.fromTextArea(document.getElementById("viewCode"), {
+        lineNumbers: true,
+        matchBrackets: true,
+        theme: "xq-light",
+        mode: "javascript"
+      });
+    </script>
+
 </body>
 </html>
 

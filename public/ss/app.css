@@ -1,13 +1,99 @@
 /* Edit this stylesheet for index.html */
-#code {
-	
+ html {
+ 	min-width: 1300px;
+ }
+ h1 {
+ 	text-align: center;
+ 	font-size: 3.0em;
+ 	top: 100px;
+ 	color: #66595C;
 }
-body {
-	font-family: 'Roboto', sans-serif;
-	background-color: #f0f0f0;
+#content {
+	top: 25px;
+	position: relative;
+	margin-left: auto;
+	margin-right: auto;
 }
-h1 {
+#viewCode {
+	display: table-cell;
+ 	background-color: #473892;
+}
+#userText {
+	display: table-cell;
+	background-color: #666;
+}
+#users {
+	display: table-cell;
+	float: left;
+	background-color: #ccc;
+	width: 125px;
+	height: 500px;
+	overflow-y: auto;
+	overflow-x: inherit;
+}
+#users ul li {
+	padding: 10px;
+	list-style: none;
 	text-align: center;
+}
+#users ul {
+	padding: 0;
+	margin: 0;
+}
+.no_bullet {
+	list-style-type: none;
+}
+
+body {
+	font-family: 'Source Sans Pro', sans-serif;
+	background-color: #EFEAE1;
+}
+nav {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	padding: 0;
+	margin: 0;
+	height: 50px;
+
+}
+nav ul {
+	padding: 0;
+	margin: 0;
+}
+nav ul li {
+	list-style: none;
+	float: left;
+	padding: 10px;
+	font-size: 1.2em;
+	color: #66595C;
+}
+nav ul li a:link, a:visited, a:hover, a:active {
+	text-decoration: none;
+	color: #66595C;
+	padding: 15px;
+}
+nav ul li a:hover {
+	background-color: #fff;
+	padding: 15px;
+}
+textarea {
+	padding: 0;
+	margin: 0;
+}
+.table_row {
+	display: table-row;
+	clear: left;
+	margin-left: auto;
+	margin-right: auto;
+	width: 100%;
+}
+
+.CodeMirror {
+	width: 550px !important;
+	height: 500px !important;
+	float: left;
 }
 
 /*# sourceMappingURL=app.css.map*/
