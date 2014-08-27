@@ -165,13 +165,13 @@ textarea {
 }
 .fb-like {
 	position: absolute;
-	top: 620px;
-	left: 1065px;
+	top: 640px;
+	left: 1025px;
 }
 .twitter-share {
 	position: absolute;
-	top: 620px;
-	left: 975px;
+	top: 640px;
+	left: 935px;
 }
 /* Overrides Codemirror styling */
 .CodeMirror {
